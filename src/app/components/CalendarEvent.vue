@@ -8,9 +8,9 @@
       </div>
     </div>
     <div v-if="event.edit">
-      <input type="text" :placeholder="event.details">
+      <input v-model="newEventDetails" type="text" :placeholder="event.details">
       <div class="has-text-centered icons">
-        <i class="fa fa-check"></i>
+        <i class="fa fa-check" @click="updateEvent(day.id, event.details, newEventDetails)"></i>
       </div>
     </div>
   </div>
@@ -22,9 +22,17 @@ import { store } from "../store.js";
 export default {
   name: "CalendarEvent",
   props: ["day", "event"],
+  data() {
+    return {
+      newEventDetails: ""
+    };
+  },
   methods: {
     editEvent(dayId, eventDetails) {
       store.editEvent(dayId, eventDetails);
+    },
+    updateEvent(dayId, originalEventDetails, updatedEventDetails) {
+      store.updateEvent(dayId, originalEventDetails, updatedEventDetails);
     }
   },
   computed: {
