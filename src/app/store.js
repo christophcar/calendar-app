@@ -21,8 +21,17 @@ export const store = {
     activeDay.events.push({ details: eventDetails, edit: false })
   },
   editEvent(dayId, eventDetails) {
+    this.resetEditOfAllEvents() // reset thruthy edit events to false
     const dayObj = this.state.seedData.find(day => day.id === dayId)
     const eventObj = dayObj.events.find(event => event.details === eventDetails)
-    eventObj.edit = true
+    eventObj.edit = true // set clicked edit event to true
+  },
+  // helper function that runs through all data and sets edit prop to false
+  resetEditOfAllEvents() {
+    this.state.seedData.map(dayObj => {
+      dayObj.events.map(event => {
+        event.edit = false
+      })
+    })
   }
 }
