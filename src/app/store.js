@@ -22,9 +22,18 @@ export const store = {
   },
   editEvent(dayId, eventDetails) {
     this.resetEditOfAllEvents() // reset thruthy edit events to false
-    const dayObj = this.state.seedData.find(day => day.id === dayId)
-    const eventObj = dayObj.events.find(event => event.details === eventDetails)
+    const eventObj = this.getEventObject(dayId, eventDetails)
     eventObj.edit = true // set clicked edit event to true
+  },
+  updateEvent(dayId, originalEventDetails, newEventDetails) {
+    const eventObj = this.getEventObject(dayId, originalEventDetails)
+    eventObj.details = newEventDetails
+    eventObj.edit = false
+  },
+  // helper function to prevent dublicate code
+  getEventObject(dayId, eventDetails) {
+    const dayObj = this.state.seedData.find(day => day.id === dayId)
+    return dayObj.events.find(event => event.details === eventDetails)
   },
   // helper function that runs through all data and sets edit prop to false
   resetEditOfAllEvents() {

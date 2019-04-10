@@ -32,7 +32,10 @@ export default {
       store.editEvent(dayId, eventDetails);
     },
     updateEvent(dayId, originalEventDetails, updatedEventDetails) {
+      if (updatedEventDetails === "")
+        originalEventDetails = updatedEventDetails;
       store.updateEvent(dayId, originalEventDetails, updatedEventDetails);
+      this.newEventDetails = "";
     }
   },
   computed: {
