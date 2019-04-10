@@ -10,7 +10,6 @@ export const store = {
     return this.state.seedData.find(day => day.active)
   },
   // set the selected day to active: true and all other days to active: false
-  // dayObj is a single object item from the seed.js array
   setActiveDay(dayId) {
     this.state.seedData.map(dayObj => {
       dayObj.id === dayId ? (dayObj.active = true) : (dayObj.active = false)
@@ -23,7 +22,7 @@ export const store = {
   editEvent(dayId, eventDetails) {
     this.resetEditOfAllEvents() // reset thruthy edit events to false
     const eventObj = this.getEventObject(dayId, eventDetails)
-    eventObj.edit = true // set clicked edit event to true
+    eventObj.edit = true
   },
   updateEvent(dayId, originalEventDetails, newEventDetails) {
     const eventObj = this.getEventObject(dayId, originalEventDetails)
