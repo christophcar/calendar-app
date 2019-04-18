@@ -17,7 +17,7 @@ export default {
   },
   data() {
     return {
-      sharedState: store.state
+      sharedState: store.state // access state object
     };
   }
 };

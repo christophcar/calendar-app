@@ -38,7 +38,7 @@ export const store = {
     dayObj.events.splice(eventIndexToRemove, 1)
   },
 
-  // helper function to prevent dublicate code
+  // helper function to prevent duplicate code
   getEventObject(dayId, eventDetails) {
     const dayObj = this.state.seedData.find(day => day.id === dayId)
     return dayObj.events.find(event => event.details === eventDetails)
